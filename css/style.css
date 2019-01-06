@@ -1,16 +1,4 @@
-<!DOCTYPE html>
-<html lang="en" >
-
-<head>
-  <meta charset="UTF-8">
-  <title>WWDC 2016</title>
-  <link href='https://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-
-  
-      <style>
-      /* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
-      body {
+body {
   background: #292b36;
   font-family: 'Droid Sans Mono', monospace;
 }
@@ -86,22 +74,3 @@ h2 {
     background: #fff;
   }
 }
-
-    </style>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
-
-</head>
-
-<body>
-
-  <div class="code">
- <h1><span style="color: #97C774">H</span><span style="color: #B63E98">e</span><span style="color: #D18E62">l</span><span style="color: #DB3E41">l</span><span style="color: #1BABA5">o</span>, I speak code.</h1>
- <h2>/* Engineer */</h2>
-</div>
-  
-  
-
-</body>
-
-</html>
