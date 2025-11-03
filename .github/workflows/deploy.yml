@@ -1,85 +1,73 @@
-name: Deploy Kobweb Site to GitHub Pages
+name: Export Kobweb site
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch: #A
 
 jobs:
-  build-deploy:
+  export_and_upload:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+
+    env:
+      KOBWEB_CLI_VERSION: 0.9.21
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up JDK
-        uses: actions/setup-java@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: 17
+          java-version: 11
 
-      - name: Cache Gradle
+      # When projects are created on Windows, the executable bit is sometimes lost. So set it back just in case.
+      - name: Ensure Gradle is executable
+        run: chmod +x gradlew
+
+      # B  
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      # C
+      - name: Query Browser Cache ID
+        id: browser-cache-id
+        run: echo "value=$(./gradlew -q :site:kobwebBrowserCacheId)" >> $GITHUB_OUTPUT
+
+      # Also C
+      - name: Cache Browser Dependencies
         uses: actions/cache@v4
+        id: playwright-cache
         with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ steps.browser-cache-id.outputs.value }}
 
-      - name: Install Kobweb CLI
+      - name: Fetch kobweb
+        uses: robinraju/release-downloader@v1.9
+        with:
+          repository: "varabyte/kobweb-cli"
+          tag: "v${{ env.KOBWEB_CLI_VERSION }}"
+          fileName: "kobweb-${{ env.KOBWEB_CLI_VERSION }}.zip"
+          tarBall: false
+          zipBall: false
+
+      - name: Unzip kobweb
+        run: unzip kobweb-${{ env.KOBWEB_CLI_VERSION }}.zip
+
+      - name: Run export
         run: |
-          curl -s https://kobweb.kotlindev.org/install.sh | bash
-          echo "$HOME/.kobweb/bin" >> $GITHUB_PATH
+          cd site
+          ../kobweb-${{ env.KOBWEB_CLI_VERSION }}/bin/kobweb export --notty --layout static
 
-      - name: Build Kobweb site
-        run: kobweb build --notty
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      # D
+      - name: Upload site
+        uses: actions/upload-artifact@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: .site
-          publish_branch: main
-          external_repository: srengkhorn/srengkhorn.github.io
-          user_name: srengkhorn
-          user_email: srengkhorn@users.noreply.github.com
-          force_orphan: true
-name: Deploy Kobweb site
-
-on:
-  push:
-    branches: [ main ]
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout source
-        uses: actions/checkout@v4
-
-      - name: Set up Java
-        uses: actions/setup-java@v4
-        with:
-          java-version: 17
-          distribution: temurin
-
-      - name: Install Kobweb
-        run: curl -s https://kobweb.io/install.sh | bash
-
-      - name: Build Kobweb site
-        run: kobweb build
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: site/.kobweb/site
-          publish_branch: main
-          external_repository: srengkhorn/srengkhorn.github.io
-          user_name: srengkhorn
-          user_email: srengkhorn@users.noreply.github.com
-          force_orphan: true
+          name: site
+          path: site/.kobweb/site/
+          if-no-files-found: error
+          retention-days: 1
+ 
+ 
+ 
+ 
+ 
