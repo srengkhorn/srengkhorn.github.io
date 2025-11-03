@@ -77,4 +77,9 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: .kobweb/site
+          publish_dir: site/.kobweb/site
+          publish_branch: main
+          external_repository: srengkhorn/srengkhorn.github.io
+          user_name: srengkhorn
+          user_email: srengkhorn@users.noreply.github.com
+          force_orphan: true
