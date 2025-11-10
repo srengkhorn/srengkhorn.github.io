@@ -19,9 +19,8 @@ jobs:
 
     # Configure the build environment
     env:
-      # Use a single, standard way to run the export, leveraging Gradle directly.
-      # You often don't need to manually download the Kobweb CLI tool.
-      EXPORT_PATH: site/build/distributions/js/productionExecutable # Standard Kobweb static output path
+      # **CORRECTED:** This is the standard output path for the static Kobweb export.
+      EXPORT_PATH: site/.kobweb/site
 
     steps:
       - name: Checkout Repository
@@ -35,10 +34,9 @@ jobs:
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
-        # No need to manually chmod gradlew, as setup-gradle handles this.
-
+        
+      # The playwright cache steps are fine and retained for performance
       - name: Query Browser Cache ID and Cache Browser Dependencies (Recommended)
-        # Using a single step for caching is cleaner.
         uses: actions/cache@v4
         id: playwright-cache
         with:
@@ -54,19 +52,17 @@ jobs:
         
       - name: Run Kobweb Static Export
         run: ./gradlew :site:kobwebExport -PkobwebExportLayout=STATIC
-        # This is the idiomatic Gradle way to run the export, replacing the manual CLI download.
-        # It's more reliable as it uses the exact Kobweb version defined in your project.
+        # This command places the final static files in the EXPORT_PATH: site/.kobweb/site
 
-      # 1. New Step: Upload Artifact (Required by GitHub Pages Action)
+      # 1. Upload Artifact
       - name: Upload GitHub Pages Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # The path must point to the folder containing your static HTML, CSS, JS files.
+          # The path now points to the correct location: site/.kobweb/site
           path: ${{ env.EXPORT_PATH }} 
           
-      # 2. New Step: Deploy to GitHub Pages
+      # 2. Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-        # This step automatically looks for the artifact named 'github-pages' (which is the default
-        # name used by 'actions/upload-pages-artifact@v3' when 'name' is omitted).
+        # This step automatically looks for the artifact named 'github-pages'
