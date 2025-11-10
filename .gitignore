@@ -1,12 +1,12 @@
 # Kobweb Specific
 # ------------------------------------
-.kobweb/
+# .kobweb/
 
 # ------------------------------------
 # Gradle / Kotlin / JVM / JS
 # ------------------------------------
 build/
-# site/build/
+site/build/
 
 # Gradle wrapper caches and log files
 .gradle/
