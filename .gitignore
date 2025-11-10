@@ -1,14 +1,12 @@
-# ------------------------------------
 # Kobweb Specific
 # ------------------------------------
-# Kobweb-generated files (e.g., exported site, server-side data)
 .kobweb/
 
 # ------------------------------------
 # Gradle / Kotlin / JVM / JS
 # ------------------------------------
-# Generic build output directories
 build/
+site/build/
 
 # Gradle wrapper caches and log files
 .gradle/
