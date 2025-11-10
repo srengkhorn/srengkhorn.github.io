@@ -1,73 +1,72 @@
-name: Export Kobweb site
+name: Deploy Kobweb site to GitHub Pages
 
 on:
-  workflow_dispatch: #A
+  push:
+    branches: [ "main" ] # Trigger deployment on push to 'main'
+  workflow_dispatch:
 
 jobs:
-  export_and_upload:
+  export_and_deploy: # Renamed job for clarity
     runs-on: ubuntu-latest
     defaults:
       run:
         shell: bash
 
+    permissions:
+      contents: read # Allow reading files
+      pages: write   # Allow writing to the GitHub Pages deployment
+      id-token: write # Required for secure deployment with the Pages action
+
+    # Configure the build environment
     env:
-      KOBWEB_CLI_VERSION: 0.9.21
+      # Use a single, standard way to run the export, leveraging Gradle directly.
+      # You often don't need to manually download the Kobweb CLI tool.
+      EXPORT_PATH: site/build/distributions/js/productionExecutable # Standard Kobweb static output path
 
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: 11
+          java-version: 17 # Use a modern LTS version like 17 or 21
 
-      # When projects are created on Windows, the executable bit is sometimes lost. So set it back just in case.
-      - name: Ensure Gradle is executable
-        run: chmod +x gradlew
-
-      # B  
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
+        # No need to manually chmod gradlew, as setup-gradle handles this.
 
-      # C
-      - name: Query Browser Cache ID
-        id: browser-cache-id
-        run: echo "value=$(./gradlew -q :site:kobwebBrowserCacheId)" >> $GITHUB_OUTPUT
-
-      # Also C
-      - name: Cache Browser Dependencies
+      - name: Query Browser Cache ID and Cache Browser Dependencies (Recommended)
+        # Using a single step for caching is cleaner.
         uses: actions/cache@v4
         id: playwright-cache
         with:
           path: ~/.cache/ms-playwright
+          # Fetch the ID and use it in the key
           key: ${{ runner.os }}-playwright-${{ steps.browser-cache-id.outputs.value }}
+        
+      - name: Set Browser Cache ID
+        # Run this only if the cache step misses, ensuring the command only runs when needed.
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        id: browser-cache-id
+        run: echo "value=$(./gradlew -q :site:kobwebBrowserCacheId)" >> $GITHUB_OUTPUT
+        
+      - name: Run Kobweb Static Export
+        run: ./gradlew :site:kobwebExport -PkobwebExportLayout=STATIC
+        # This is the idiomatic Gradle way to run the export, replacing the manual CLI download.
+        # It's more reliable as it uses the exact Kobweb version defined in your project.
 
-      - name: Fetch kobweb
-        uses: robinraju/release-downloader@v1.9
+      # 1. New Step: Upload Artifact (Required by GitHub Pages Action)
+      - name: Upload GitHub Pages Artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          repository: "varabyte/kobweb-cli"
-          tag: "v${{ env.KOBWEB_CLI_VERSION }}"
-          fileName: "kobweb-${{ env.KOBWEB_CLI_VERSION }}.zip"
-          tarBall: false
-          zipBall: false
-
-      - name: Unzip kobweb
-        run: unzip kobweb-${{ env.KOBWEB_CLI_VERSION }}.zip
-
-      - name: Run export
-        run: |
-          cd site
-          ../kobweb-${{ env.KOBWEB_CLI_VERSION }}/bin/kobweb export --notty --layout static
-
-      # D
-      - name: Upload site
-        uses: actions/upload-artifact@v4
-        with:
-          name: site
-          path: site/.kobweb/site/
-          if-no-files-found: error
-          retention-days: 1
- 
- 
- 
- 
- 
+          # The path must point to the folder containing your static HTML, CSS, JS files.
+          path: ${{ env.EXPORT_PATH }} 
+          
+      # 2. New Step: Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+        # This step automatically looks for the artifact named 'github-pages' (which is the default
+        # name used by 'actions/upload-pages-artifact@v3' when 'name' is omitted).
