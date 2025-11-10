@@ -1,0 +1,59 @@
+# Kobweb ignores
+.kobweb/*
+!.kobweb/conf.yaml
+
+# ------------------------------------
+# Kobweb Specific
+# ------------------------------------
+# Kobweb-generated files (e.g., exported site, server-side data)
+.kobweb/
+
+# ------------------------------------
+# Gradle / Kotlin / JVM / JS
+# ------------------------------------
+# Generic build output directories
+build/
+
+# Gradle wrapper caches and log files
+.gradle/
+gradle-wrapper.jar
+*.log
+!gradle-wrapper.properties
+!gradle-wrapper.jar.asc
+
+# Kotlin/JS artifacts
+kotlin-js-store/
+.kotlin/
+.kotlin-js-store/
+
+# Generated metadata and cache
+.kotlin-metadata/
+.kotlin-daemon/
+
+# ------------------------------------
+# IDE / Editor
+# ------------------------------------
+# IntelliJ IDEA / Android Studio
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+# VS Code (User-specific settings)
+.vscode/
+
+# ------------------------------------
+# Operating System
+# ------------------------------------
+# Mac OS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# ------------------------------------
+# Dependencies
+# ------------------------------------
+# Commonly used for client-side dependencies (e.g., if using npm)
+node_modules/
