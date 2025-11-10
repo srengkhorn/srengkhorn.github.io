@@ -51,5 +51,3 @@ Thumbs.db
 # ------------------------------------
 # Commonly used for client-side dependencies (e.g., if using npm)
 node_modules/
-site/build/*
-site/build/
