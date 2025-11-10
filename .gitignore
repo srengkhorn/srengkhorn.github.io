@@ -1,6 +1,8 @@
 # Kobweb Specific
 # ------------------------------------
-# .kobweb/
+.kobweb/*
+!.kobweb/conf.yaml
+!.kobweb/site
 
 # ------------------------------------
 # Gradle / Kotlin / JVM / JS
