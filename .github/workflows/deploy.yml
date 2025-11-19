@@ -3,7 +3,7 @@ name: Deploy Kobweb site to GitHub Pages
 on:
   push:
     branches:
-      - main
+      - main   # adjust if your default branch is different
   workflow_dispatch:
 
 permissions:
@@ -12,38 +12,36 @@ permissions:
   id-token: write
 
 jobs:
-  build-and-export:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      # 1. Checkout the repository
+      - name: Checkout repository
         uses: actions/checkout@v4
 
+      # 2. Set up Java
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: 17  # Or whatever your project uses
+          java-version: 17   # adjust to your project's Java version
 
+      # 3. Set up Gradle
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
 
-      - name: Export site
+      # 4. Export Kobweb static site
+      - name: Export Kobweb site
         run: |
-          cd site  # or wherever your Kobweb module is
+          cd site
           kobweb export --layout static
 
+      # 5. Upload the generated static site for Pages
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: site/.kobweb/site  # This is the default output folder
+          path: site/.kobweb/site
 
-  deploy:
-    needs: build-and-export
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
-    steps:
+      # 6. Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
-        id: deploy
         uses: actions/deploy-pages@v4
