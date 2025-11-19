@@ -2,67 +2,48 @@ name: Deploy Kobweb site to GitHub Pages
 
 on:
   push:
-    branches: [ "main" ] # Trigger deployment on push to 'main'
+    branches:
+      - main
   workflow_dispatch:
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
-  export_and_deploy: # Renamed job for clarity
+  build-and-export:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash
-
-    permissions:
-      contents: read # Allow reading files
-      pages: write   # Allow writing to the GitHub Pages deployment
-      id-token: write # Required for secure deployment with the Pages action
-
-    # Configure the build environment
-    env:
-      # **CORRECTED:** This is the standard output path for the static Kobweb export.
-      EXPORT_PATH: site/.kobweb/site
-
     steps:
-      - name: Checkout Repository
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: 17 # Use a modern LTS version like 17 or 21
+          java-version: 17  # Or whatever your project uses
 
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3
-        
-      # The playwright cache steps are fine and retained for performance
-      - name: Query Browser Cache ID and Cache Browser Dependencies (Recommended)
-        uses: actions/cache@v4
-        id: playwright-cache
-        with:
-          path: ~/.cache/ms-playwright
-          # Fetch the ID and use it in the key
-          key: ${{ runner.os }}-playwright-${{ steps.browser-cache-id.outputs.value }}
-        
-      - name: Set Browser Cache ID
-        # Run this only if the cache step misses, ensuring the command only runs when needed.
-        if: steps.playwright-cache.outputs.cache-hit != 'true'
-        id: browser-cache-id
-        run: echo "value=$(./gradlew -q :site:kobwebBrowserCacheId)" >> $GITHUB_OUTPUT
-        
-      - name: Run Kobweb Static Export
-        run: ./gradlew :site:kobwebExport -PkobwebExportLayout=STATIC
-        # This command places the final static files in the EXPORT_PATH: site/.kobweb/site
+        uses: gradle/actions/setup-gradle@v4
 
-      # 1. Upload Artifact
-      - name: Upload GitHub Pages Artifact
+      - name: Export site
+        run: |
+          cd site  # or wherever your Kobweb module is
+          kobweb export --layout static
+
+      - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # The path now points to the correct location: site/.kobweb/site
-          path: ${{ env.EXPORT_PATH }} 
-          
-      # 2. Deploy to GitHub Pages
+          path: site/.kobweb/site  # This is the default output folder
+
+  deploy:
+    needs: build-and-export
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
       - name: Deploy to GitHub Pages
-        id: deployment
+        id: deploy
         uses: actions/deploy-pages@v4
-        # This step automatically looks for the artifact named 'github-pages'
