@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "SRENG Khorn",
-  title: "Senior Android Engineer",
+  title: "Senior Android x Software Engineer",
   description: "Portfolio website of SRENG Khorn",
   accentColor: "#1d4ed8",
   social: {
@@ -10,7 +10,7 @@ export const siteConfig = {
     github: "https://github.com/srengkhorn",
   },
   aboutMe:
-    "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem quos asperiores nihil consequatur tempore cupiditate architecto natus commodi corrupti quas quasi facere est, dignissimos odit nam veniam sapiente ut, vitae eligendi ipsum dolor, nostrum ullam impedit! Corrupti ratione mollitia temporibus necessitatibus, consectetur reiciendis recusandae id, dolorum quaerat, vero pariatur. Ratione!",
+    "Mobile Application Developer with strong experience in Android development using Kotlin and Jetpack Compose. Passionate about building high-quality mobile applications.",
   skills: ["Kotlin", "Jetpack Compose", "KMP", "Java", "PHP", "Firebase", "Docker"],
   projects: [
     {
