@@ -11,45 +11,45 @@ export const siteConfig = {
   },
   aboutMe:
     "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem quos asperiores nihil consequatur tempore cupiditate architecto natus commodi corrupti quas quasi facere est, dignissimos odit nam veniam sapiente ut, vitae eligendi ipsum dolor, nostrum ullam impedit! Corrupti ratione mollitia temporibus necessitatibus, consectetur reiciendis recusandae id, dolorum quaerat, vero pariatur. Ratione!",
-  skills: ["Javascript", "React", "Node.js", "Python", "AWS", "Docker"],
+  skills: ["Kotlin", "Jetpack Compose", "KMP", "Java", "PHP", "Firebase", "Docker"],
   projects: [
     {
-      name: "AI Dev Roundup Newsletter",
+      name: "Authenticator Application",
       description:
-        "One concise email. Five minutes. Every Tuesday. Essential AI news & trends, production-ready libraries, powerful AI tools, and real-world code examples",
-      link: "https://aidevroundup.com/?ref=devportfolio",
-      skills: ["React", "Node.js", "AWS"],
+        "TOTP generator for Internet Banking",
+      link: "",
+      skills: ["Jetpack Compose", "Expressive", "Firebase"],
     },
     {
-      name: "Chrome Extension Mastery: Build Full-Stack Extensions with React & Node.js",
+      name: "Mobile Banking Application",
       description:
         "Master the art of building production-ready, full-stack Chrome Extensions using modern web technologies and best practices",
       link: "https://fullstackextensions.com/?ref=devportfolio",
-      skills: ["React", "Node.js", "AWS"],
+      skills: ["Jetpack Compose", "Material", "Firebase"],
     },
-    {
-      name: "ExtensionKit",
-      description:
-        "Kit to jump-start your Chrome extension projects with a variety of battle-tested starter templates & examples",
-      link: "https://extensionkit.io/?ref=devportfolio",
-      skills: ["React", "Node.js", "AWS"],
-    },
+    // {
+    //   name: "ExtensionKit",
+    //   description:
+    //     "Kit to jump-start your Chrome extension projects with a variety of battle-tested starter templates & examples",
+    //   link: "https://extensionkit.io/?ref=devportfolio",
+    //   skills: ["React", "Node.js", "AWS"],
+    // },
   ],
   experience: [
     {
-      company: "Tech Company",
-      title: "Senior Software Engineer",
-      dateRange: "Jan 2022 - Present",
+      company: "Chip Mong Commercial Bank Plc.",
+      title: "Supervisor, IT Mobile",
+      dateRange: "Feb 2023 - Present",
       bullets: [
-        "Led development of microservices architecture serving 1M+ users",
-        "Reduced API response times by 40% through optimization",
-        "Mentored team of 5 junior developers",
+        "Development of mobile banking app",
+        "Optimization",
+        "Mentored team of junior developers",
       ],
     },
     {
-      company: "Startup Inc",
-      title: "Full Stack Developer",
-      dateRange: "Jun 2020 - Dec 2021",
+      company: "MangoByte",
+      title: "Semi-Senior Mobile & Software Developer",
+      dateRange: "2021 - 2023",
       bullets: [
         "Built and launched MVP product from scratch using React and Node.js",
         "Implemented CI/CD pipeline reducing deployment time by 60%",
@@ -57,11 +57,31 @@ export const siteConfig = {
       ],
     },
     {
-      company: "Digital Agency",
-      title: "Frontend Developer",
-      dateRange: "Aug 2014 - May 2015",
+      company: "LTLabs, Phnom Penh",
+      title: "Software Developer",
+      dateRange: "2019 - 2021",
       bullets: [
-        "Developed responsive web applications for 20+ clients",
+        "Developed responsive web applications",
+        "Improved site performance scores by 35% on average",
+        "Introduced modern JavaScript frameworks to legacy codebases",
+      ],
+    },
+    {
+      company: "Pathmazing Inc",
+      title: "Web Developer",
+      dateRange: "2015 - 2017",
+      bullets: [
+        "Developed responsive web applications",
+        "Improved site performance scores by 35% on average",
+        "Introduced modern JavaScript frameworks to legacy codebases",
+      ],
+    },
+    {
+      company: "Ubiquitous Mekong Cambodia Co., Ltd",
+      title: "Web Designer",
+      dateRange: "2014 - 2015",
+      bullets: [
+        "Developed responsive web applications",
         "Improved site performance scores by 35% on average",
         "Introduced modern JavaScript frameworks to legacy codebases",
       ],
@@ -69,8 +89,8 @@ export const siteConfig = {
   ],
   education: [
     {
-      school: "HRD Center",
-      degree: "Completed Basic & Advanced Course",
+      school: "Korea Software HRD Center (KSHRD)",
+      degree: "Granted a scholarship study in the Course of Software",
       dateRange: "2018 - 2019",
       achievements: [
         "Completed 500+ hours of coursework",
@@ -80,10 +100,10 @@ export const siteConfig = {
     },
     {
       school: "Norton University",
-      degree: "Bachelor of Science in Computer Science",
-      dateRange: "2015 - 2018",
+      degree: "Bachelor Degree in Computer Science",
+      dateRange: "2015 - 2017",
       achievements: [
-        "Graduated Magna Cum Laude with 3.8 GPA",
+        "Graduated Magna Cum Laude with",
         "Dean's List all semesters",
         "President of Computer Science Club",
       ],
