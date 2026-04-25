@@ -1,13 +1,13 @@
 export const siteConfig = {
-  name: "Ryan Fitzgerald",
-  title: "Senior Software Engineer",
-  description: "Portfolio website of Ryan Fitzgerald",
+  name: "SRENG Khorn",
+  title: "Senior Android Engineer",
+  description: "Portfolio website of SRENG Khorn",
   accentColor: "#1d4ed8",
   social: {
-    email: "your-email@example.com",
-    linkedin: "https://linkedin.com/in/yourprofile",
-    twitter: "https://x.com/rfitzio",
-    github: "https://github.com/RyanFitzgerald",
+    email: "srengkhorn@gmail.com",
+    linkedin: "https://linkedin.com/in/srengkhorn",
+    twitter: "https://x.com/srengkhorn",
+    github: "https://github.com/srengkhorn",
   },
   aboutMe:
     "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem quos asperiores nihil consequatur tempore cupiditate architecto natus commodi corrupti quas quasi facere est, dignissimos odit nam veniam sapiente ut, vitae eligendi ipsum dolor, nostrum ullam impedit! Corrupti ratione mollitia temporibus necessitatibus, consectetur reiciendis recusandae id, dolorum quaerat, vero pariatur. Ratione!",
@@ -59,7 +59,7 @@ export const siteConfig = {
     {
       company: "Digital Agency",
       title: "Frontend Developer",
-      dateRange: "Aug 2018 - May 2020",
+      dateRange: "Aug 2014 - May 2015",
       bullets: [
         "Developed responsive web applications for 20+ clients",
         "Improved site performance scores by 35% on average",
@@ -69,9 +69,19 @@ export const siteConfig = {
   ],
   education: [
     {
-      school: "University Name",
+      school: "HRD Center",
+      degree: "Completed Basic & Advanced Course",
+      dateRange: "2018 - 2019",
+      achievements: [
+        "Completed 500+ hours of coursework",
+        "Built 10+ portfolio projects",
+        "Specialized in React and Node.js",
+      ],
+    },
+    {
+      school: "Norton University",
       degree: "Bachelor of Science in Computer Science",
-      dateRange: "2014 - 2018",
+      dateRange: "2015 - 2018",
       achievements: [
         "Graduated Magna Cum Laude with 3.8 GPA",
         "Dean's List all semesters",
@@ -79,9 +89,9 @@ export const siteConfig = {
       ],
     },
     {
-      school: "Online Platform",
-      degree: "Full Stack Development Certificate",
-      dateRange: "2019",
+      school: "Passerelles numériques Cambodia (PNC)",
+      degree: "Associate Degree in Web Programing",
+      dateRange: "2012 - 2014",
       achievements: [
         "Completed 500+ hours of coursework",
         "Built 10+ portfolio projects",
