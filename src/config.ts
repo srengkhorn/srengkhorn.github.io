@@ -23,8 +23,8 @@ export const siteConfig = {
     {
       name: "Mobile Banking Application",
       description:
-        "Master the art of building production-ready, full-stack Chrome Extensions using modern web technologies and best practices",
-      link: "https://fullstackextensions.com/?ref=devportfolio",
+        "Master the art of building production-ready, full-stack Android using modern mobile technologies and best practices",
+      link: "https://play.google.com/store/apps/details?id=com.chipmongbank.mobileappproduction&pcampaignid=web_share",
       skills: ["Jetpack Compose", "Material", "Firebase"],
     },
     // {
