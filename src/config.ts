@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "SRENG Khorn",
-  title: "Senior Android x Software Engineer",
+  title: "Senior Mobile x Software Engineer",
   description: "Portfolio website of SRENG Khorn",
   accentColor: "#1d4ed8",
   social: {
@@ -41,9 +41,9 @@ export const siteConfig = {
       title: "Supervisor, IT Mobile",
       dateRange: "Feb 2023 - Present",
       bullets: [
-        "Development of mobile banking app",
-        "Optimization",
-        "Mentored team of junior developers",
+        "Develop and enhance Android applications using Kotlin and modern Android technologies.",
+        "Collaborate with backend teams to integrate secure banking APIs and services",
+        "Mentor junior developers and conduct technical guidance sessions within the team.",
       ],
     },
     {
@@ -51,8 +51,8 @@ export const siteConfig = {
       title: "Semi-Senior Mobile & Software Developer",
       dateRange: "2021 - 2023",
       bullets: [
-        "Built and launched MVP product from scratch using React and Node.js",
-        "Implemented CI/CD pipeline reducing deployment time by 60%",
+        "Build api for PARADE Ecommerce with MySQL and Spring Boot",
+        "Java spring boot unit test with Mockito",
         "Collaborated with product team to define technical requirements",
       ],
     },
@@ -61,9 +61,9 @@ export const siteConfig = {
       title: "Software Developer",
       dateRange: "2019 - 2021",
       bullets: [
-        "Developed responsive web applications",
-        "Improved site performance scores by 35% on average",
-        "Introduced modern JavaScript frameworks to legacy codebases",
+        "Maintain some existing legacy systems (Java Spring Boot, ASP.NET, etc.)",
+        "Design Android project structure for the new projects",
+        "Develop the Android app with NFC, laser, QR-Code, and Barcode scanner",
       ],
     },
     {
@@ -71,9 +71,9 @@ export const siteConfig = {
       title: "Web Developer",
       dateRange: "2015 - 2017",
       bullets: [
-        "Developed responsive web applications",
-        "Improved site performance scores by 35% on average",
-        "Introduced modern JavaScript frameworks to legacy codebases",
+        "Develop Web application with Laravel full stack",
+        "Convert UI/UX design into responsive web UI with Bootstrap",
+        "Integrated web UI with API",
       ],
     },
     {
@@ -81,9 +81,9 @@ export const siteConfig = {
       title: "Web Designer",
       dateRange: "2014 - 2015",
       bullets: [
-        "Developed responsive web applications",
-        "Improved site performance scores by 35% on average",
-        "Introduced modern JavaScript frameworks to legacy codebases",
+        "Develop the clients’ websites using WordPress CMS",
+        "Design UI/UX for new websites using Adobe Photoshop",
+        "Design poster, banners, logo or ads for website and printing",
       ],
     },
   ],
@@ -93,9 +93,9 @@ export const siteConfig = {
       degree: "Granted a scholarship study in the Course of Software",
       dateRange: "2018 - 2019",
       achievements: [
-        "Completed 500+ hours of coursework",
-        "Built 10+ portfolio projects",
-        "Specialized in React and Node.js",
+        "J2SE (Basic Java and OOP concepts), J2EE (Servlet and MVC pattern)",
+        "Spring Boot, MyBatis Data Access, Spring RESTful Web Service , Spring Security, Thymeleaf Template Engine",
+        "PostgreSQL, SQL(Basic SQL, Advanced SQL), Data Modeling",
       ],
     },
     {
@@ -103,19 +103,15 @@ export const siteConfig = {
       degree: "Bachelor Degree in Computer Science",
       dateRange: "2015 - 2017",
       achievements: [
-        "Graduated Magna Cum Laude with",
-        "Dean's List all semesters",
-        "President of Computer Science Club",
+        "Graduated in Bachelor Degree of Computer Science",
       ],
     },
     {
       school: "Passerelles numériques Cambodia (PNC)",
-      degree: "Associate Degree in Web Programing",
+      degree: "Associate Degree in Web Programming",
       dateRange: "2012 - 2014",
       achievements: [
-        "Completed 500+ hours of coursework",
-        "Built 10+ portfolio projects",
-        "Specialized in React and Node.js",
+        "Graduated in Associated Degree of Web Programming",
       ],
     },
   ],
